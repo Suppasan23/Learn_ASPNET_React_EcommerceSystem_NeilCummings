@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Product } from "../models/product";
+import Catalog from "../../features/catalog/Catalog";
+import { Typography } from "@mui/material";
 
 function App() {
 
@@ -10,7 +12,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
-
+  
   function addProduct() {
     setProducts(prevState => [...prevState, 
       {
@@ -24,19 +26,12 @@ function App() {
   }
 
   return (
-    <div>
+    <>
 
-      <h1>E-COMMERCE</h1>
+      <Typography variant="h1">E-COMMERCE</Typography>
+      <Catalog products={products} addProduct={addProduct}/>
 
-      <button onClick={addProduct}>Add Product</button>
-
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>{product.name} : {product.price}</li>
-        ))}
-      </ul>
-
-    </div>
+    </>
   );
 }
 
