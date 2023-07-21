@@ -4,19 +4,33 @@ import Header from "./Header";
 import { useState } from "react";
 
 function App() {
+
   const [darkMode, setDarkmode] = useState(false);
+
   const paletteType = darkMode ? 'dark' : 'light';
+
   const theme = createTheme({
     palette: {
       mode: paletteType
     }
   })
 
+  function swichThemeMode(){
+    if(darkMode)
+    {
+      setDarkmode(false);
+    }
+    else
+    {
+      setDarkmode(true);
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
 
       <CssBaseline />
-      <Header/>
+      <Header swichThemeMode={swichThemeMode}/>
 
       <Container>
         <Catalog/>
