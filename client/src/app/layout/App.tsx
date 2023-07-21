@@ -11,26 +11,22 @@ function App() {
 
   const theme = createTheme({
     palette: {
-      mode: paletteType
+      mode: paletteType,
+      background : {
+        default: paletteType === 'light' ? '#eaeaea' : '#121212'
+      }
     }
   })
 
-  function swichThemeMode(){
-    if(darkMode)
-    {
-      setDarkmode(false);
-    }
-    else
-    {
-      setDarkmode(true);
-    }
+  function handleThemeChange(){
+    setDarkmode(!darkMode);
   }
 
   return (
     <ThemeProvider theme={theme}>
 
       <CssBaseline />
-      <Header swichThemeMode={swichThemeMode}/>
+      <Header darkMode={darkMode} handleThemeChange={handleThemeChange}/>
 
       <Container>
         <Catalog/>

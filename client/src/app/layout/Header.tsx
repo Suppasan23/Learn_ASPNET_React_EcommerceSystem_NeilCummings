@@ -1,18 +1,19 @@
 import { AppBar, Switch, Toolbar, Typography } from "@mui/material"; 
 
 interface Props {
-    swichThemeMode: () => void;
+    darkMode: boolean;
+    handleThemeChange: () => void;
 }
 
-export default function Header({ swichThemeMode }: Props){
+export default function Header({ darkMode, handleThemeChange }: Props){
     return(
         <AppBar position="static" sx={{mb: 2}}>
             <Toolbar>
                 <Typography variant="h6">
-                E-COMMERCE
+                    E-COMMERCE
                 </Typography>
 
-                <Switch defaultChecked color="default" onChange={swichThemeMode}/>
+                <Switch color="default" checked={darkMode} onChange={handleThemeChange}/>
             </Toolbar>
         </AppBar>
     )
