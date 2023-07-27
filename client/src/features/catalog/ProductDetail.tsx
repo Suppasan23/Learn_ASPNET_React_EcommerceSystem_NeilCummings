@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import { Product } from "../../app/models/product";
 import agent from "../../app/api/agent";
 import NotFound from "../../app/errors/NotFound";
+import LoadingComponent from "../../app/layout/loadingComponent";
 
 
 export default function ProductDetailPage(){
-
     const {id} = useParams<{id: string}>();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
@@ -22,8 +22,7 @@ export default function ProductDetailPage(){
           .finally(() => setLoading(false));
       }, [id]);
       
-
-    if(loading) return <h3>Loading...</h3>
+    if(loading) return <LoadingComponent message='Loading product...'/>
 
     if(!product) return <NotFound/>
 
