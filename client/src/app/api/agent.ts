@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { router } from "../router/route";
-import { resolve } from "path";
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 0));//Set delay time for loading page
 
