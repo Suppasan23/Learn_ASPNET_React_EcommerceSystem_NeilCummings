@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7Oxr7TZny11HLjgWLMbIuDzI9l2O2QJ9kUXQuJwY8FlKUjZqUFR0glys/ve7R6MGhOS7/Rjek9aGPkc2cZe0kw==",
+  "dgSpecHash": "oOhChwDQyoliDhoW5M61kZKQH1x6K2H9jSEWG/MyMP8oHPT2dgylq1UmjB/27u+crkpMKMX9d07Gug6H9k7SNg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SUPPASAN\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\SUPPASAN\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.7\\microsoft.aspnetcore.openapi.7.0.7.nupkg.sha512",
