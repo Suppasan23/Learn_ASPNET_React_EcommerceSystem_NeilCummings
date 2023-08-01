@@ -19,13 +19,12 @@ namespace API.Entities
 
         public void RemoveItem(int productId, int quantity)
         {
-            var itemToRemove = Items.FirstOrDefault(item => item.ProductId == productId);
-            if(itemToRemove == null) return;
+            var item = Items.FirstOrDefault(item => item.ProductId == productId);
+            if(item == null) return;
 
-            itemToRemove.Quantity -= quantity;
+            item.Quantity -= quantity;
 
-            if(itemToRemove.Quantity == 0) 
-            Items.Remove(itemToRemove);
+            if(item.Quantity == 0) Items.Remove(item);
         }
     }
 }
