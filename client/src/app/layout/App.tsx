@@ -40,6 +40,7 @@ function App() {
   }
 
   if(loading) return <LoadingComponent message="Initialising app..."/>
+  
   return (
     <ThemeProvider theme={theme}>
 

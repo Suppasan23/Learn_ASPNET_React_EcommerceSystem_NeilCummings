@@ -19,7 +19,6 @@ root.render(
     <StoreProvider>
       <RouterProvider router={router}/>
     </StoreProvider>
-    <RouterProvider router = {router} />
   </React.StrictMode>
 );
 
