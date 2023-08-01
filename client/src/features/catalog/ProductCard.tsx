@@ -10,13 +10,16 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
+
   const [loading, setLoading] = useState(false);
 
   function handleAddItem(productId: number){
     setLoading(true);
+    setTimeout(() => {
     agent.Basket.addItem(productId)
         .catch(error => console.log(error))
         .finally(() => setLoading(false));
+    },500);
   }
 
   return (
@@ -44,11 +47,15 @@ export default function ProductCard({ product }: Props) {
       </CardContent>
 
       <CardActions>
-        <LoadingButton loading={loading} 
-          onClick={() => handleAddItem(product.id)} size="small">Add to card
+        <LoadingButton 
+          loading={loading} 
+          onClick={() => handleAddItem(product.id)} 
+          size="small">Add to cart
         </LoadingButton>
-        <Button component={Link} 
-          to={`/catalog/${product.id}`} size="small">View
+        <Button 
+          component={Link} 
+          to={`/catalog/${product.id}`} 
+          size="small">View
         </Button>
       </CardActions>
 
