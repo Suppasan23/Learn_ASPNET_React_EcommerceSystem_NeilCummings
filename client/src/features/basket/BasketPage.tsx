@@ -8,22 +8,29 @@ import { LoadingButton } from "@mui/lab";
 export default function BasketPage(){
   
     const {basket, setBasket, removeItem} = useStoreContext();
-    const [loading, setLoading] = useState(false);
+    const [status, setStatus] = useState({
+      loading: false,
+      name:''
+    });
 
-    function handleAddItem(productId: number){
-      setLoading(true);
+    function handleAddItem(productId: number, name: string){
+      setStatus({loading: true, name});
+      setTimeout(() => {
       agent.Basket.addItem(productId)
           .then(basket => setBasket(basket))
           .catch(error => console.log(error))
-          .finally(() => setLoading(false))
+          .finally(() => setStatus({loading: false, name: ''}))
+      },500);
     }
 
-    function handleRemoveItem(productId: number, quantity = 1){
-      setLoading(true);
+    function handleRemoveItem(productId: number, quantity = 1, name: string){
+      setStatus({loading: true, name});
+      setTimeout(() => {
       agent.Basket.removeItem(productId, quantity)
           .then(() => removeItem(productId, quantity))
           .catch(error => console.log(error))
-          .finally(() => setLoading(false))
+          .finally(() => setStatus({loading: false, name: ''}))
+      },500);
     }
 
     if (!basket) return <Typography variant="h3">Your basket is empty</Typography>
@@ -54,15 +61,32 @@ export default function BasketPage(){
                 <TableCell align="right">${(item.price / 100).toFixed(2)}</TableCell>
 
                 <TableCell align="center">
-                  <LoadingButton onClick={() => handleRemoveItem(item.productId)} loading={loading} color='error'><Remove/></LoadingButton>
+                  <LoadingButton 
+                    loading={status.loading && status.name === 'rem' + item.productId} 
+                    onClick={() => handleRemoveItem(item.productId , 1, 'rem' + item.productId)} 
+                    color='error'>
+                    <Remove/>
+                  </LoadingButton>
+
                   {item.quantity}
-                  <LoadingButton onClick={() => handleAddItem(item.productId)} loading={loading} color='success'><Add/></LoadingButton>
+
+                  <LoadingButton 
+                    loading={status.loading && status.name === 'add' + item.productId} 
+                    onClick={() => handleAddItem(item.productId , 'add' + item.productId)} 
+                    color='success'>
+                    <Add/>
+                  </LoadingButton>
                 </TableCell>
 
                 <TableCell align="right">${((item.price / 100) * item.quantity).toFixed(2)}</TableCell>
 
                 <TableCell align="right">
-                    <LoadingButton onClick={() => handleRemoveItem(item.productId , item.quantity)} loading={loading} color='error'><Delete /></LoadingButton>
+                  <LoadingButton 
+                    loading={status.loading && status.name === 'del' + item.productId} 
+                    onClick={() => handleRemoveItem(item.productId , item.productId, 'del' + item.productId)} 
+                    color='error'>
+                    <Delete />
+                  </LoadingButton>
                 </TableCell>
 
               </TableRow>
