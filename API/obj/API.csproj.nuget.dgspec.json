@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\api\\API.csproj": {}
+    "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\api\\API.csproj": {
+    "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\api\\API.csproj",
+        "projectPath": "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\API\\API.csproj",
         "packagesPath": "C:\\Users\\SUPPASAN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\api\\obj\\",
+        "outputPath": "C:\\Users\\SUPPASAN\\Desktop\\Learn_ASPNET_React_EcommerceSystem_NeilCummings\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
