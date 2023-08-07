@@ -5,11 +5,22 @@ import { RootState } from "../../app/store/configureStore";
 
 const productsAdapter = createEntityAdapter<Product>();
 
-export const fetchProductsAsync = createAsyncThunk<Product[]>(
+export const fetchProductsAsync = createAsyncThunk<Product[]>( //Multiple fetch product
     'catalog/fetchProductsAsync',
     async () =>{
         try {
             return await agent.Catalog.list();
+        } catch(error) {
+            console.log(error);
+        }
+    }
+)
+
+export const fetchProductAsync = createAsyncThunk<Product, number>( //Single fetch product
+    'catalog/fetchProductAsync',
+    async (productId) =>{
+        try {
+            return await agent.Catalog.details(productId)
         } catch(error) {
             console.log(error);
         }
@@ -24,6 +35,7 @@ export const catalogSlice = createSlice({
     }),
     reducers: {},
     extraReducers: (builder => {
+        //Multiple fetch product
         builder.addCase(fetchProductsAsync.pending, (state) => {
             state.status = 'pendingFetchProducts';
         });
@@ -34,6 +46,18 @@ export const catalogSlice = createSlice({
         });
         builder.addCase(fetchProductsAsync.rejected, (state) => {
             state.status = 'idle';
+        })
+
+        //Single fetch product
+        builder.addCase(fetchProductAsync.pending, (state) => {
+            state.status = 'pendingFetchProduct';
+        })
+        builder.addCase(fetchProductAsync.fulfilled, (state, action) => {
+            productsAdapter.upsertOne(state, action.payload);
+            state.status = 'idle';
+        })
+        builder.addCase(fetchProductAsync.rejected, (state) => {
+            state.status = 'idle'
         })
     })
 })
