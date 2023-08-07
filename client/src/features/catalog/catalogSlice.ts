@@ -7,25 +7,27 @@ const productsAdapter = createEntityAdapter<Product>();
 
 export const fetchProductsAsync = createAsyncThunk<Product[]>( //Multiple fetch product
     'catalog/fetchProductsAsync',
-    async () =>{
+    async (_, thunkAPI) =>{
         try {
             return await agent.Catalog.list();
-        } catch(error) {
-            console.log(error);
+        } catch(error :any) {
+            return thunkAPI.rejectWithValue({ error: error.data });
         }
     }
 )
 
-export const fetchProductAsync = createAsyncThunk<Product, number>( //Single fetch product
-    'catalog/fetchProductAsync',
-    async (productId) =>{
-        try {
-            return await agent.Catalog.details(productId)
-        } catch(error) {
-            console.log(error);
-        }
+
+export const fetchProductAsync = createAsyncThunk<Product, number>(
+  'catalog/fetchProductAsync',
+  async (productId, thunkAPI) => {
+    try {
+      return await agent.Catalog.details(productId);
+    } catch (error:any) {
+      return thunkAPI.rejectWithValue({ error: error.data });
     }
-)
+  }
+);
+
 
 export const catalogSlice = createSlice({
     name: 'catalog',
@@ -35,7 +37,7 @@ export const catalogSlice = createSlice({
     }),
     reducers: {},
     extraReducers: (builder => {
-        //Multiple fetch product
+        //Multiple fetch product "fetchProduct(s)Async"
         builder.addCase(fetchProductsAsync.pending, (state) => {
             state.status = 'pendingFetchProducts';
         });
@@ -44,11 +46,12 @@ export const catalogSlice = createSlice({
             state.status = 'idle';
             state.productsLoaded = true;
         });
-        builder.addCase(fetchProductsAsync.rejected, (state) => {
+        builder.addCase(fetchProductsAsync.rejected, (state, action) => {
+            console.log(action.payload)
             state.status = 'idle';
         })
 
-        //Single fetch product
+        //Single fetch product "fetchProductAsync"
         builder.addCase(fetchProductAsync.pending, (state) => {
             state.status = 'pendingFetchProduct';
         })
@@ -56,7 +59,8 @@ export const catalogSlice = createSlice({
             productsAdapter.upsertOne(state, action.payload);
             state.status = 'idle';
         })
-        builder.addCase(fetchProductAsync.rejected, (state) => {
+        builder.addCase(fetchProductAsync.rejected, (state, action) => {
+            console.log(action)
             state.status = 'idle'
         })
     })
